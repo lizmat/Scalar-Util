@@ -38,6 +38,7 @@ class Scalar::Util:ver<0.0.1> {
         try { a.Numeric } !=== Nil
     }
 
+    # the following functions are not functional on Perl 6
     my sub die-reference($what) is hidden-from-backtrace {
         die qq:to/TEXT/;
         '$what' is not supported on Rakudo Perl 6, because Rakudo Perl 6 does not
@@ -80,7 +81,12 @@ sub EXPORT(*@args) {
         die @messages.join
     }
 
-    Map.new( |(EXPORT::DEFAULT::{ @args.map: '&' ~ * }:p) )
+    my $imports := Map.new( |(EXPORT::DEFAULT::{ @args.map: '&' ~ * }:p) );
+    if $imports != @args {
+        die "Scalar::Util doesn't know how to import: "
+          ~ @args.grep( { !$imports{$_} } ).join(', ')
+    }
+    $imports
 }
 
 =begin pod
