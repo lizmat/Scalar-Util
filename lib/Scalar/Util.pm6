@@ -1,12 +1,12 @@
 use v6.c;
 
-class Scalar::Util:ver<0.0.1> {
+class Scalar::Util:ver<0.0.2> {
 
-    our sub blessed(\a) is export {
+    our sub blessed(\a) is export(:SUPPORTED) {
         use nqp;
         nqp::isconcrete(nqp::decont(a)) ?? a.^name !! Nil
     }
-    our sub dualvar(\a,\b) is export {
+    our sub dualvar(\a,\b) is export(:SUPPORTED) {
         given a.Numeric {
             when Int     { IntStr.new($_, b)     }
             when Num     { NumStr.new($_, b)     }
@@ -15,26 +15,26 @@ class Scalar::Util:ver<0.0.1> {
             default { die "Numeric didn't die, yet not Int,Num,Rat or Complex" }
         }
     }
-    our sub isdual(\a) is export {
+    our sub isdual(\a) is export(:SUPPORTED) {
         so a ~~ any(IntStr,NumStr,RatStr,ComplexStr)
     }
-    our sub readonly(\a) is export {
+    our sub readonly(\a) is export(:SUPPORTED) {
         use nqp;
         nqp::p6bool(nqp::not_i(nqp::iscont(a)))
     }
-    our sub refaddr(\a) is export {
+    our sub refaddr(\a) is export(:SUPPORTED) {
         use nqp;
         nqp::where(a)
     }
-    our sub reftype(\a) is export {
+    our sub reftype(\a) is export(:SUPPORTED) {
         a ~~ Positional
           ?? 'ARRAY'
           !! a ~~ Associative
             ?? 'HASH'
             !! Nil
     }
-    our sub isvstring(\a) is export { a ~~ Version }
-    our sub looks_like_number(\a) is export {
+    our sub isvstring(\a) is export(:SUPPORTED) { a ~~ Version }
+    our sub looks_like_number(\a) is export(:SUPPORTED) {
         try { a.Numeric } !=== Nil
     }
 
@@ -45,23 +45,23 @@ class Scalar::Util:ver<0.0.1> {
         do any refcounting or have the concept of a reference.
         TEXT
     }
-    our sub weaken(|)   is export(:ABSENT) { die-reference('weaken')   }
-    our sub isweak(|)   is export(:ABSENT) { die-reference('isweak')   }
-    our sub unweaken(|) is export(:ABSENT) { die-reference('unweaken') }
+    our sub weaken(|)   is export(:UNSUPPORTED) { die-reference('weaken')   }
+    our sub isweak(|)   is export(:UNSUPPORTED) { die-reference('isweak')   }
+    our sub unweaken(|) is export(:UNSUPPORTED) { die-reference('unweaken') }
 
-    our sub openhandle(|) is export(:ABSENT) {
+    our sub openhandle(|) is export(:UNSUPPORTED) {
         die qq:to/TEXT/;
         'openhandle' is not supported on Rakudo Perl 6, because Rakudo Perl 6
         does not have the concept op typeglobs.
         TEXT
     }
-    our sub set_prototype(|) is export(:ABSENT) {
+    our sub set_prototype(|) is export(:UNSUPPORTED) {
         die qq:to/TEXT/;
         'set_prototype' is not supported on Rakudo Perl 6, because Rakudo Perl 6
         does not have the concept of prototypes.
         TEXT
     }
-    our sub tainted(|) is export(:ABSENT) {
+    our sub tainted(|) is export(:UNSUPPORTED) {
         die qq:to/TEXT/;
         'tainted' is not supported on Rakudo Perl 6, because Rakudo Perl 6
         does not have the concept of taint built in.
@@ -72,7 +72,8 @@ class Scalar::Util:ver<0.0.1> {
 sub EXPORT(*@args) {
     return Map.new unless @args;
 
-    if EXPORT::ABSENT::{ @args.map: '&' ~ * }:v -> @absentees {
+    # check if we're trying to import stuff we don't support
+    if EXPORT::UNSUPPORTED::{ @args.map: '&' ~ * }:v -> @absentees {
         my @messages;
         for @absentees {
             CATCH { when X::AdHoc { @messages.push(.message); .resume } }
@@ -81,7 +82,7 @@ sub EXPORT(*@args) {
         die @messages.join
     }
 
-    my $imports := Map.new( |(EXPORT::DEFAULT::{ @args.map: '&' ~ * }:p) );
+    my $imports := Map.new( |(EXPORT::SUPPORTED::{ @args.map: '&' ~ * }:p) );
     if $imports != @args {
         die "Scalar::Util doesn't know how to export: "
           ~ @args.grep( { !$imports{$_} } ).join(', ')
