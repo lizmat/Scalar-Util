@@ -38,7 +38,7 @@ class Scalar::Util:ver<0.0.1> {
         try { a.Numeric } !=== Nil
     }
 
-    my sub die-reference($what) {
+    my sub die-reference($what) is hidden-from-backtrace {
         die qq:to/TEXT/;
         '$what' is not supported on Rakudo Perl 6, because Rakudo Perl 6 does not
         do any refcounting or have the concept of a reference.
