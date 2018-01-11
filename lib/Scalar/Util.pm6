@@ -2,7 +2,10 @@ use v6.c;
 
 class Scalar::Util:ver<0.0.1> {
 
-    our sub blessed(\a) is export { a.^name }
+    our sub blessed(\a) is export {
+        use nqp;
+        nqp::isconcrete(nqp::decont(a)) ?? a.^name !! Nil
+    }
     our sub dualvar(\a,\b) is export {
         given a.Numeric {
             when Int     { IntStr.new($_, b)     }
@@ -15,8 +18,14 @@ class Scalar::Util:ver<0.0.1> {
     our sub isdual(\a) is export {
         so a ~~ any(IntStr,NumStr,RatStr,ComplexStr)
     }
-    our sub readonly(\a) is export { use nqp; nqp::p6bool(nqp::iscont(a)) }
-    our sub refaddr(\a) is export { use nqp; nqp::where(a) }
+    our sub readonly(\a) is export {
+        use nqp;
+        nqp::p6bool(nqp::not_i(nqp::iscont(a)))
+    }
+    our sub refaddr(\a) is export {
+        use nqp;
+        nqp::where(a)
+    }
     our sub reftype(\a) is export {
         a ~~ Positional
           ?? 'ARRAY'

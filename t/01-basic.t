@@ -5,3 +5,4 @@ use Scalar::Util;
 pass "replace me";
 
 done-testing;
+# vim: ft=perl6 expandtab sw=4

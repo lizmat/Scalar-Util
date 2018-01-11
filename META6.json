@@ -13,7 +13,10 @@
   },
   "resources" : [ ],
   "source-url" : "https://github.com/lizmat/Scalar-Util.git",
-  "tags" : [ UTILS CPAN5 ],
+  "tags" : [
+    "UTILS",
+    "CPAN5"
+  ],
   "test-depends" : [ ],
   "version" : "0.0.1"
 }
