@@ -83,7 +83,7 @@ sub EXPORT(*@args) {
 
     my $imports := Map.new( |(EXPORT::DEFAULT::{ @args.map: '&' ~ * }:p) );
     if $imports != @args {
-        die "Scalar::Util doesn't know how to import: "
+        die "Scalar::Util doesn't know how to export: "
           ~ @args.grep( { !$imports{$_} } ).join(', ')
     }
     $imports
