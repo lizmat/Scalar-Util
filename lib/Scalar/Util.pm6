@@ -1,6 +1,6 @@
 use v6.c;
 
-module Scalar::Util:ver<0.0.4>:auth<cpan:ELIZABETH> {
+module Scalar::Util:ver<0.0.5>:auth<cpan:ELIZABETH> {
 
     our sub blessed(\a) is export(:SUPPORTED) {
         use nqp;
@@ -20,7 +20,7 @@ module Scalar::Util:ver<0.0.4>:auth<cpan:ELIZABETH> {
     }
     our sub readonly(\a) is export(:SUPPORTED) {
         use nqp;
-        nqp::p6bool(nqp::not_i(nqp::iscont(a)))
+        nqp::not_i(nqp::iscont(a)).Bool
     }
     our sub refaddr(\a) is export(:SUPPORTED) {
         use nqp;
