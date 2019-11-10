@@ -5,7 +5,7 @@
   ],
   "build-depends" : [ ],
   "depends" : [ ],
-  "description" : "Port of Perl 5's Scalar::Util 1.49",
+  "description" : "Port of Perl's Scalar::Util 1.49",
   "license" : "Artistic-2.0",
   "name" : "Scalar::Util",
   "perl" : "6.c",
@@ -19,5 +19,5 @@
     "CPAN5"
   ],
   "test-depends" : [ ],
-  "version" : "0.0.5"
+  "version" : "0.0.6"
 }

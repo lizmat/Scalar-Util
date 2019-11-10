@@ -1,6 +1,6 @@
 use v6.c;
 
-module Scalar::Util:ver<0.0.5>:auth<cpan:ELIZABETH> {
+module Scalar::Util:ver<0.0.6>:auth<cpan:ELIZABETH> {
 
     our sub blessed(\a) is export(:SUPPORTED) {
         use nqp;
@@ -38,10 +38,10 @@ module Scalar::Util:ver<0.0.5>:auth<cpan:ELIZABETH> {
         try { a.Numeric } !=== Nil
     }
 
-    # the following functions are not functional on Perl 6
+    # the following functions are not functional on Raku
     my sub die-reference($what) is hidden-from-backtrace {
         die qq:to/TEXT/;
-        '$what' is not supported on Rakudo Perl 6, because Rakudo Perl 6 does not
+        '$what' is not supported on Raku, because Rakud does not
         do any refcounting or have the concept of a reference.
         TEXT
     }
@@ -51,19 +51,19 @@ module Scalar::Util:ver<0.0.5>:auth<cpan:ELIZABETH> {
 
     our sub openhandle(|) is export(:UNSUPPORTED) {
         die qq:to/TEXT/;
-        'openhandle' is not supported on Rakudo Perl 6, because Rakudo Perl 6
+        'openhandle' is not supported on Raku, because Raku
         does not have the concept op typeglobs.
         TEXT
     }
     our sub set_prototype(|) is export(:UNSUPPORTED) {
         die qq:to/TEXT/;
-        'set_prototype' is not supported on Rakudo Perl 6, because Rakudo Perl 6
+        'set_prototype' is not supported on Raku, because Raku
         does not have the concept of prototypes.
         TEXT
     }
     our sub tainted(|) is export(:UNSUPPORTED) {
         die qq:to/TEXT/;
-        'tainted' is not supported on Rakudo Perl 6, because Rakudo Perl 6
+        'tainted' is not supported on Raku, because Raku
         does not have the concept of taint built in.
         TEXT
     }
@@ -94,7 +94,7 @@ sub EXPORT(*@args) {
 
 =head1 NAME
 
-Scalar::Util - Port of Perl 5's Scalar::Util 1.49
+Scalar::Util - Port of Perl's Scalar::Util 1.49
 
 =head1 SYNOPSIS
 
@@ -120,10 +120,10 @@ Returns the name of the class of the object.
 
     my $addr = refaddr( $object );
 
-Returns the internal memory address of the object as a plain integer.  Please note
-that Perl 6 implementations do B<not> require the memory address of an object to
-be constant: in fact, with C<MoarVM> as a back end, any longer living object
-B<will> have its memory address changed over its lifetime.
+Returns the internal memory address of the object as a plain integer.  Please
+note that Raku implementations do B<not> require the memory address of an
+object to be constant: in fact, with C<MoarVM> as a back end, any longer
+living object B<will> have its memory address changed over its lifetime.
 
 =head2 reftype
 
@@ -182,8 +182,8 @@ Returns true if C<$var> is readonly (aka does not have a container).
 
 =head1 FUNCTIONS NOT PORTED
 
-It did not make sense to port the following functions to Perl 6, as they pertain
-to specific Pumpkin Perl 5 internals.
+It did not make sense to port the following functions to Raku, as they pertain
+to specific Pumpkin Perl internals.
 
   weaken isweak unweaken openhandle set_prototype tainted
 
@@ -205,12 +205,12 @@ Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018 Elizabeth Mattijsen
+Copyright 2018-2019 Elizabeth Mattijsen
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
-Re-imagined from the Perl 5 version as part of the CPAN Butterfly Plan. Perl 5
-version originally developed by Graham Barr, subsequently maintained by Matthijs
-van Duin, cPanel and Paul Evans.
+Re-imagined from the Perl version as part of the CPAN Butterfly Plan. Perl
+version originally developed by Graham Barr, subsequently maintained by
+Matthijs van Duin, cPanel and Paul Evans.
 
 =end pod

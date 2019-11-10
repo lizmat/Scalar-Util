@@ -1,9 +1,7 @@
-[![Build Status](https://travis-ci.org/lizmat/Scalar-Util.svg?branch=master)](https://travis-ci.org/lizmat/Scalar-Util)
-
 NAME
 ====
 
-Scalar::Util - Port of Perl 5's Scalar::Util 1.49
+Scalar::Util - Port of Perl's Scalar::Util 1.49
 
 SYNOPSIS
 ========
@@ -30,7 +28,7 @@ refaddr
 
     my $addr = refaddr( $object );
 
-Returns the internal memory address of the object as a plain integer. Please note that Perl 6 implementations do **not** require the memory address of an object to be constant: in fact, with `MoarVM` as a back end, any longer living object **will** have its memory address changed over its lifetime.
+Returns the internal memory address of the object as a plain integer. Please note that Raku implementations do **not** require the memory address of an object to be constant: in fact, with `MoarVM` as a back end, any longer living object **will** have its memory address changed over its lifetime.
 
 reftype
 -------
@@ -92,7 +90,7 @@ Returns true if `$var` is readonly (aka does not have a container).
 FUNCTIONS NOT PORTED
 ====================
 
-It did not make sense to port the following functions to Perl 6, as they pertain to specific Pumpkin Perl 5 internals.
+It did not make sense to port the following functions to Raku, as they pertain to specific Pumpkin Perl internals.
 
     weaken isweak unweaken openhandle set_prototype tainted
 
@@ -113,9 +111,9 @@ Source can be located at: https://github.com/lizmat/Scalar-Util . Comments and P
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2018 Elizabeth Mattijsen
+Copyright 2018-2019 Elizabeth Mattijsen
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
-Re-imagined from the Perl 5 version as part of the CPAN Butterfly Plan. Perl 5 version originally developed by Graham Barr, subsequently maintained by Matthijs van Duin, cPanel and Paul Evans.
+Re-imagined from the Perl version as part of the CPAN Butterfly Plan. Perl version originally developed by Graham Barr, subsequently maintained by Matthijs van Duin, cPanel and Paul Evans.
 
