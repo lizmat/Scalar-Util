@@ -3,9 +3,9 @@ use Test;
 use Scalar::Util;
 
 my @supported =
-  <blessed dualvar isdual readonly refaddr reftype isvstring looks_like_number>;
+  <blessed dualvar isdual readonly refaddr reftype isvstring looks_like_number openhandle>;
 my @unsupported =
-  <weaken isweak unweaken openhandle set_prototype tainted>;
+  <weaken isweak unweaken set_prototype tainted>;
 my @all = (|@supported, |@unsupported).map: '&' ~ *;
 
 plan @all * 2 + @unsupported;

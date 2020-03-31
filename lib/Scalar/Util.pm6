@@ -1,6 +1,6 @@
 use v6.c;
 
-module Scalar::Util:ver<0.0.6>:auth<cpan:ELIZABETH> {
+module Scalar::Util:ver<0.0.7>:auth<cpan:ELIZABETH> {
 
     our sub blessed(\a) is export(:SUPPORTED) {
         use nqp;
@@ -38,6 +38,10 @@ module Scalar::Util:ver<0.0.6>:auth<cpan:ELIZABETH> {
         try { a.Numeric } !=== Nil
     }
 
+    our sub openhandle($handle) is export(:SUPPORTED) {
+        $handle ~~ IO::Handle && $handle.opened  ?? $handle !! Nil
+    }
+
     # the following functions are not functional on Raku
     my sub die-reference($what) is hidden-from-backtrace {
         die qq:to/TEXT/;
@@ -49,12 +53,6 @@ module Scalar::Util:ver<0.0.6>:auth<cpan:ELIZABETH> {
     our sub isweak(|)   is export(:UNSUPPORTED) { die-reference('isweak')   }
     our sub unweaken(|) is export(:UNSUPPORTED) { die-reference('unweaken') }
 
-    our sub openhandle(|) is export(:UNSUPPORTED) {
-        die qq:to/TEXT/;
-        'openhandle' is not supported on Raku, because Raku
-        does not have the concept op typeglobs.
-        TEXT
-    }
     our sub set_prototype(|) is export(:UNSUPPORTED) {
         die qq:to/TEXT/;
         'set_prototype' is not supported on Raku, because Raku
@@ -180,12 +178,23 @@ Returns true if C<$var> is readonly (aka does not have a container).
     $readonly = foo($bar);              # False
     $readonly = foo(0);                 # True
 
+=head2 openhandle
+
+    my $fh = openhandle( $fh );
+
+    Returns $fh itself if $fh may be used as a filehandle and is open, or is
+    is a tied handle. Otherwise <Nil> is returned.
+
+        $fh = openhandle($*STDIN);
+        $fh = openhandle($notopen);         # Nil
+        $fh = openhandle("scalar");         # Nil
+
 =head1 FUNCTIONS NOT PORTED
 
 It did not make sense to port the following functions to Raku, as they pertain
 to specific Pumpkin Perl internals.
 
-  weaken isweak unweaken openhandle set_prototype tainted
+  weaken isweak unweaken set_prototype tainted
 
 Attempting to import these functions will result in a compilation error with
 hopefully targeted feedback.  Attempt to call these functions using the fully
@@ -205,7 +214,7 @@ Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018-2019 Elizabeth Mattijsen
+Copyright 2018,2019,2020 Elizabeth Mattijsen
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 

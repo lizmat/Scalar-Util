@@ -2,6 +2,9 @@ Revision history for Scalar::Util
 
 {{$NEXT}}
 
+0.0.7  2020-03-31T15:16:27+02:00
+    - add implementation of openhandle(), tbrowder++ for nudge
+
 0.0.6  2019-11-10T13:00:00+01:00
     - changed Perl 6 to Raku, and Perl 5 to Perl
 

@@ -87,12 +87,24 @@ Returns true if `$var` is readonly (aka does not have a container).
     $readonly = foo($bar);              # False
     $readonly = foo(0);                 # True
 
+openhandle
+----------
+
+    my $fh = openhandle( $fh );
+
+    Returns $fh itself if $fh may be used as a filehandle and is open, or is
+    is a tied handle. Otherwise <Nil> is returned.
+
+        $fh = openhandle($*STDIN);
+        $fh = openhandle($notopen);         # Nil
+        $fh = openhandle("scalar");         # Nil
+
 FUNCTIONS NOT PORTED
 ====================
 
 It did not make sense to port the following functions to Raku, as they pertain to specific Pumpkin Perl internals.
 
-    weaken isweak unweaken openhandle set_prototype tainted
+    weaken isweak unweaken set_prototype tainted
 
 Attempting to import these functions will result in a compilation error with hopefully targeted feedback. Attempt to call these functions using the fully qualified name (e.g. `Scalar::Util::weaken($a)`) will result in a run time error with the same feedback.
 
@@ -111,7 +123,7 @@ Source can be located at: https://github.com/lizmat/Scalar-Util . Comments and P
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2018-2019 Elizabeth Mattijsen
+Copyright 2018,2019,2020 Elizabeth Mattijsen
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
