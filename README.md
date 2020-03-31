@@ -7,7 +7,7 @@ SYNOPSIS
 ========
 
     use Scalar::Util <blessed dualvar isdual readonly refaddr reftype
-                      isvstring looks_like_number>
+                      isvstring looks_like_number openhandle>
 
 DESCRIPTION
 ===========

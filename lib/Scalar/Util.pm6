@@ -1,6 +1,6 @@
 use v6.c;
 
-module Scalar::Util:ver<0.0.7>:auth<cpan:ELIZABETH> {
+module Scalar::Util:ver<0.0.8>:auth<cpan:ELIZABETH> {
 
     our sub blessed(\a) is export(:SUPPORTED) {
         use nqp;
@@ -97,7 +97,7 @@ Scalar::Util - Port of Perl's Scalar::Util 1.49
 =head1 SYNOPSIS
 
     use Scalar::Util <blessed dualvar isdual readonly refaddr reftype
-                      isvstring looks_like_number>
+                      isvstring looks_like_number openhandle>
 
 =head1 DESCRIPTION
 
