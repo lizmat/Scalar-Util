@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 
 use Scalar::Util <looks_like_number>;
 use Test;
@@ -12,4 +12,4 @@ for <42 42.2 42E0 42+3i> {
 }
 nok looks_like_number("ab"), 'does "ab" NOT look like a number?';
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

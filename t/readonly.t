@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 
 use Scalar::Util <readonly>;
 use Test;
@@ -14,4 +14,4 @@ ok readonly(42),  'is 42 readonly';
 my $b := 666;
 ok readonly($b), 'is $b readonly';
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

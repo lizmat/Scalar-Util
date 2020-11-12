@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 
 use Scalar::Util <dualvar isdual>;
 use Test;
@@ -23,4 +23,4 @@ ok !isdual($var),    'No longer dualvar';
 ok $var == 3.2,      'inc Numeric value';
 ok $var ne "café", 'inc String value';
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

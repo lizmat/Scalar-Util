@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 
 use Scalar::Util <blessed>;
 use Test;
@@ -22,4 +22,4 @@ my $c = Foo;
 is blessed($c),       Nil, 'is $c a Nil';
 is blessed(Foo::Bar), Nil, 'is Foo::Bar a Nil';
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

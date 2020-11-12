@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 
 use Scalar::Util <refaddr>;
 use Test;
@@ -10,4 +10,4 @@ ok defined(&refaddr), 'refaddr defined';
 ok refaddr(42) ~~ Int, 'does refaddr give an Int';
 is refaddr(42), refaddr(42), 'is refaddr consistent';
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

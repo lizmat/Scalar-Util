@@ -1,6 +1,6 @@
-use v6.c;
+use v6.*;
 
-module Scalar::Util:ver<0.0.8>:auth<cpan:ELIZABETH> {
+module Scalar::Util:ver<0.0.9>:auth<cpan:ELIZABETH> {
 
     our sub blessed(\a) is export(:SUPPORTED) {
         use nqp;
@@ -92,7 +92,7 @@ sub EXPORT(*@args) {
 
 =head1 NAME
 
-Scalar::Util - Port of Perl's Scalar::Util 1.49
+Raku port of Perl's Scalar::Util module 1.55
 
 =head1 SYNOPSIS
 
@@ -100,6 +100,9 @@ Scalar::Util - Port of Perl's Scalar::Util 1.49
                       isvstring looks_like_number openhandle>
 
 =head1 DESCRIPTION
+
+This module tries to mimic the behaviour of Perl's C<Scalar::Util>
+module as closely as possible in the Raku Programming Language.
 
 C<Scalar::Util> contains a selection of subroutines that people have expressed
 would be nice to have in the perl core, but the usage would not really be high
@@ -223,3 +226,5 @@ version originally developed by Graham Barr, subsequently maintained by
 Matthijs van Duin, cPanel and Paul Evans.
 
 =end pod
+
+# vim: expandtab shiftwidth=4

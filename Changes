@@ -2,8 +2,13 @@ Revision history for Scalar::Util
 
 {{$NEXT}}
 
+0.0.9  2020-11-12T20:35:23+01:00
+    - Change name of distribution
+    - Force to highest possible Raku version
+
 0.0.8  2020-03-31T18:36:43+02:00
     - Mention openhandle in the SYNOPSIS, tbrowder++
+    - Update copyright year
 
 0.0.7  2020-03-31T15:16:27+02:00
     - Added implementation of openhandle(), tbrowder++ for nudge

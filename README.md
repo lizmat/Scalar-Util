@@ -1,7 +1,7 @@
 NAME
 ====
 
-Scalar::Util - Port of Perl's Scalar::Util 1.49
+Raku port of Perl's Scalar::Util module 1.55
 
 SYNOPSIS
 ========
@@ -11,6 +11,8 @@ SYNOPSIS
 
 DESCRIPTION
 ===========
+
+This module tries to mimic the behaviour of Perl's `Scalar::Util` module as closely as possible in the Raku Programming Language.
 
 `Scalar::Util` contains a selection of subroutines that people have expressed would be nice to have in the perl core, but the usage would not really be high enough to warrant the use of a keyword, and the size would be so small that being individual extensions would be wasteful.
 

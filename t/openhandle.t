@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 
 use Scalar::Util <openhandle>;
 use Test;
@@ -15,4 +15,4 @@ $*IN.close;
 is-deeply openhandle($*INi), Nil, 'did we get Nil on closed handle';
 is-deeply openhandle("foo"), Nil, 'non-handle should produce Nil';
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4
