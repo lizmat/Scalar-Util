@@ -1,6 +1,6 @@
 use v6.*;
 
-module Scalar::Util:ver<0.0.9>:auth<cpan:ELIZABETH> {
+module Scalar::Util:ver<0.0.10>:auth<zef:lizmat> {
 
     our sub blessed(\a) is export(:SUPPORTED) {
         use nqp;
@@ -210,14 +210,14 @@ L<List::Util>
 
 =head1 AUTHOR
 
-Elizabeth Mattijsen <liz@wenzperl.nl>
+Elizabeth Mattijsen <liz@raku.rocks>
 
 Source can be located at: https://github.com/lizmat/Scalar-Util . Comments and
 Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018,2019,2020 Elizabeth Mattijsen
+Copyright 2018, 2019, 2020, 2021 Elizabeth Mattijsen
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 

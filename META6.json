@@ -1,5 +1,5 @@
 {
-  "auth": "cpan:ELIZABETH",
+  "auth": "zef:lizmat",
   "authors": [
     "Elizabeth Mattijsen"
   ],
@@ -12,7 +12,7 @@
   "name": "Scalar::Util",
   "perl": "6.c",
   "provides": {
-    "Scalar::Util": "lib/Scalar/Util.pm6"
+    "Scalar::Util": "lib/Scalar/Util.rakumod"
   },
   "resources": [
   ],
@@ -23,5 +23,5 @@
   ],
   "test-depends": [
   ],
-  "version": "0.0.9"
+  "version": "0.0.10"
 }
